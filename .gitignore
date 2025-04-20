@@ -8,3 +8,6 @@ org-drill.html
 /robot/messages.txt
 /robot/*-copy.org
 
+*.elc
+/org-drill-autoloads.el
+/org-drill-pkg.el

@@ -1845,13 +1845,18 @@ visual overlay, or with the string TEXT if it is supplied."
   (save-excursion
     (while (re-search-forward org-drill-cloze-regexp nil t)
       ;; Don't hide:
-      ;; - org links, partly because they might contain inline
+      ;; - org links including org cite, partly because they might contain inline
       ;;   images which we want to keep visible.
       ;; - LaTeX math fragments
       ;; - the contents of SRC blocks
+      ;; - footnote
       (unless (save-match-data
                 (or (org-drill-pos-in-regexp (match-beginning 0)
-                                       org-bracket-link-regexp 1)
+                                             org-bracket-link-regexp 1)
+                    (org-drill-pos-in-regexp (match-beginning 0)
+                                             org-footnote-re 1)
+                    (org-in-regexp "\\[cite:.+\\]" 1)
+                    (org-at-item-checkbox-p)
                     (org-in-src-block-p)
                     (org-inside-LaTeX-fragment-p)))
         (org-drill-hide-matched-cloze-text)))))
