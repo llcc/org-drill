@@ -1855,6 +1855,8 @@ visual overlay, or with the string TEXT if it is supplied."
                                              org-bracket-link-regexp 1)
                     (org-drill-pos-in-regexp (match-beginning 0)
                                              org-footnote-re 1)
+                    (org-drill-pos-in-regexp (match-beginning 0)
+                                             org-footnote-definition-re 1)
                     (org-in-regexp "\\[cite:.+\\]" 1)
                     (org-at-item-checkbox-p)
                     (org-in-src-block-p)
